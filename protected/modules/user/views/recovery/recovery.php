@@ -17,14 +17,14 @@ $this->breadcrumbs=array(
 <?php echo CHtml::beginForm(); ?>
 
 	<?php echo CHtml::errorSummary($form); ?>
-	
-	<div class="row">
+
+	<div class="">
 		<?php echo CHtml::activeLabel($form,'login_or_email'); ?>
 		<?php echo CHtml::activeTextField($form,'login_or_email') ?>
-		<p class="hint"><?php echo UserModule::t("Please enter your login or email addres."); ?></p>
+		<p class="hint"><?php echo UserModule::t("Please enter your login or email address."); ?></p>
 	</div>
 	
-	<div class="row submit">
+	<div class="submit">
 		<?php echo CHtml::submitButton(UserModule::t("Restore")); ?>
 	</div>
 
