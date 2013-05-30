@@ -14,12 +14,12 @@ $this->pageTitle=Yii::app()->name;
 
 <?php if(Yii::app()->user->isGuest) { ?>
     <div class="row">
-        <div class="span5">
+        <div class="span6">
             <?php $this->widget('application.modules.user.widgets.LoginWidget'); ?>
         </div>
-        <div class="span5">
-            <p>Not yet registered?</p>
-            <?php echo CHtml::link(UserModule::t("Register"),Yii::app()->getModule('user')->registrationUrl); ?>
+        <div class="span4">
+            <p>Can't login?</p>
+            <?php echo CHtml::link(UserModule::t("Lost Password"),Yii::app()->getModule('user')->recoveryUrl); ?> | <?php echo CHtml::link(UserModule::t("Register"),Yii::app()->getModule('user')->registrationUrl); ?>
         </div>
     </div>
 <?php } ?>

@@ -23,9 +23,6 @@
         'type'=>'primary',
         'label'=>'Submit',
     )); ?>
-    <br />
-    <br />
-    <?php echo CHtml::link(UserModule::t("Lost Password?"),Yii::app()->getModule('user')->recoveryUrl); ?>
 </div>
 
 <?php $this->endWidget(); ?>
