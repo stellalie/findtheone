@@ -79,7 +79,8 @@ class Bootstrap extends CApplicationComponent
 	public function registerAllCss()
 	{
 		$this->registerCoreCss();
-		$this->registerResponsiveCss();
+		// being responsive isn't part of the requirement for FTO
+        // $this->registerResponsiveCss();
 		$this->registerYiiCss();
 	}
 

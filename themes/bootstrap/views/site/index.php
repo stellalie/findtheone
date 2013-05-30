@@ -1,25 +1,25 @@
 <?php
 /* @var $this SiteController */
+/* @var $model RegistrationForm */
+/* @var $form TbActiveForm */
 
 $this->pageTitle=Yii::app()->name;
 ?>
 
 <?php $this->beginWidget('bootstrap.widgets.TbHeroUnit',array(
-    'heading'=>'Welcome to '.CHtml::encode(Yii::app()->name),
+    'heading'=>CHtml::encode(Yii::app()->name),
 )); ?>
-
-<p>Congratulations! You have successfully created your Yii application.</p>
-
+    <p>Feeling "ronery"? Find your match here!</p>
 <?php $this->endWidget(); ?>
 
-<p>You may change the content of this page by modifying the following two files:</p>
-
-<ul>
-    <li>View file: <code><?php echo __FILE__; ?></code></li>
-    <li>Layout file: <code><?php echo $this->getLayoutFile('main'); ?></code></li>
-</ul>
-
-<p>For more details on how to further develop this application, please read
-    the <a href="http://www.yiiframework.com/doc/">documentation</a>.
-    Feel free to ask in the <a href="http://www.yiiframework.com/forum/">forum</a>,
-    should you have any questions.</p>
+<?php if(Yii::app()->user->isGuest) { ?>
+    <div class="row">
+        <div class="span5">
+            <?php $this->widget('application.modules.user.widgets.LoginWidget'); ?>
+        </div>
+        <div class="span5">
+            <p>Not yet registered?</p>
+            <?php echo CHtml::link(UserModule::t("Register"),Yii::app()->getModule('user')->registrationUrl); ?>
+        </div>
+    </div>
+<?php } ?>

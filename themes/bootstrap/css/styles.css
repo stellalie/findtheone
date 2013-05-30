@@ -1,3 +1,8 @@
+/* modify default container width */
+.container {
+    margin: 0 auto;
+    max-width: 780px;
+}
 #page {
     padding-top: 60px;
 }

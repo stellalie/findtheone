@@ -17,6 +17,7 @@ return array(
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
+        'application.modules.user.*', /* TODO: weird, seems can't load UserModule.php */
         'application.modules.user.models.*',
         'application.modules.user.components.*',
 	),
