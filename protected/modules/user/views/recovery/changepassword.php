@@ -1,4 +1,5 @@
-<?php $this->pageTitle=Yii::app()->name . ' - '.UserModule::t("Change Password");
+<?php
+$this->pageTitle=Yii::app()->name . ' - '.UserModule::t("Change Password");
 $this->breadcrumbs=array(
 	UserModule::t("Login") => array('/user/login'),
 	UserModule::t("Change Password"),
@@ -7,30 +8,28 @@ $this->breadcrumbs=array(
 
 <h1><?php echo UserModule::t("Change Password"); ?></h1>
 
+<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
+    'id'=>'recovery-form',
+    'type'=>'horizontal',
+    'enableClientValidation'=>true,
+    'clientOptions'=>array(
+        'validateOnSubmit'=>true,
+    ),
+    'htmlOptions'=>array(
+        'class'=>'well',
+    ),
+)); ?>
 
-<div class="form">
-<?php echo CHtml::beginForm(); ?>
+<?php echo $form->errorSummary($model); ?>
+<?php echo $form->passwordFieldRow($model,'password', array('class'=>'input-medium')); ?>
+<?php echo $form->passwordFieldRow($model,'verifyPassword', array('class'=>'input-medium')); ?>
 
-	<p class="note"><?php echo UserModule::t('Fields with <span class="required">*</span> are required.'); ?></p>
-	<?php echo CHtml::errorSummary($form); ?>
-	
-	<div class="row">
-	<?php echo CHtml::activeLabelEx($form,'password'); ?>
-	<?php echo CHtml::activePasswordField($form,'password'); ?>
-	<p class="hint">
-	<?php echo UserModule::t("Minimal password length 4 symbols."); ?>
-	</p>
-	</div>
-	
-	<div class="row">
-	<?php echo CHtml::activeLabelEx($form,'verifyPassword'); ?>
-	<?php echo CHtml::activePasswordField($form,'verifyPassword'); ?>
-	</div>
-	
-	
-	<div class="row submit">
-	<?php echo CHtml::submitButton(UserModule::t("Save")); ?>
-	</div>
+<div class="form-actions">
+    <?php $this->widget('bootstrap.widgets.TbButton',array(
+        'buttonType'=>'submit',
+        'type'=>'primary',
+        'label'=>'Save',
+    )); ?>
+</div>
 
-<?php echo CHtml::endForm(); ?>
-</div><!-- form -->
+<?php $this->endWidget(); ?>

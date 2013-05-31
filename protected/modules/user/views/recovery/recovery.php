@@ -21,11 +21,11 @@ $this->breadcrumbs=array(
 	<div class="">
 		<?php echo CHtml::activeLabel($form,'login_or_email'); ?>
 		<?php echo CHtml::activeTextField($form,'login_or_email') ?>
-		<p class="hint"><?php echo UserModule::t("Please enter your login or email address."); ?></p>
+		<p class="hint"><?php echo UserModule::t("Please enter your login or email addres."); ?></p>
 	</div>
-	
+
 	<div class="submit">
-		<?php echo CHtml::submitButton(UserModule::t("Restore")); ?>
+		<?php echo CHtml::submitButton(UserModule::t("Restore"), array('class'=>'btn btn-primary')); ?>
 	</div>
 
 <?php echo CHtml::endForm(); ?>

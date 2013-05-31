@@ -19,56 +19,54 @@
 <?php echo Yii::app()->user->getFlash('profileMessage'); ?>
 </div>
 <?php endif; ?>
-<div class="form">
-<?php $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'profile-form',
-	'enableAjaxValidation'=>true,
-	'htmlOptions' => array('enctype'=>'multipart/form-data'),
+
+
+
+<h1><?php echo UserModule::t("Change Password"); ?></h1>
+
+<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
+    'id'=>'edit-profile-form',
+    'type'=>'horizontal',
+    'enableClientValidation'=>true,
+    'clientOptions'=>array(
+        'validateOnSubmit'=>true,
+    ),
+    'htmlOptions'=>array(
+        'class'=>'well',
+    ),
 )); ?>
 
-	<p class="note"><?php echo UserModule::t('Fields with <span class="required">*</span> are required.'); ?></p>
-
-	<?php echo $form->errorSummary(array($model,$profile)); ?>
-
-<?php 
-		$profileFields=$profile->getFields();
-		if ($profileFields) {
-			foreach($profileFields as $field) {
-			?>
-	<div class="row">
-		<?php echo $form->labelEx($profile,$field->varname);
-		
-		if ($widgetEdit = $field->widgetEdit($profile)) {
-			echo $widgetEdit;
-		} elseif ($field->range) {
-			echo $form->dropDownList($profile,$field->varname,Profile::range($field->range));
-		} elseif ($field->field_type=="TEXT") {
-			echo $form->textArea($profile,$field->varname,array('rows'=>6, 'cols'=>50));
-		} else {
-			echo $form->textField($profile,$field->varname,array('size'=>60,'maxlength'=>(($field->field_size)?$field->field_size:255)));
-		}
-		echo $form->error($profile,$field->varname); ?>
-	</div>	
-			<?php
-			}
-		}
+<?php echo $form->errorSummary($model); ?>
+<?php
+// TODO: not yet bootstrapped (only if i have a spare time)
+$profileFields=$profile->getFields();
+if ($profileFields) {
+    foreach($profileFields as $field) {
+        if ($widgetEdit = $field->widgetEdit($profile)) { ?>
+            <div class="control-group">
+                <div class="control-label"><?php echo $form->labelEx($profile,$field->varname); ?></div>
+                <div class="controls"><?php echo $widgetEdit; ?></div>
+            </div>
+        <?php
+        } elseif ($field->range) {
+            echo $form->dropDownListRow($profile,$field->varname,Profile::range($field->range));
+        } elseif ($field->field_type=="TEXT") {
+            echo$form->textAreaRow($profile,$field->varname,array('class'=>'input-medium'));
+        } else {
+            echo $form->textFieldRow($profile,$field->varname,array('class'=>'input-medium'));            }
+        echo $form->error($profile,$field->varname);
+    }
+}
 ?>
-	<div class="row">
-		<?php echo $form->labelEx($model,'username'); ?>
-		<?php echo $form->textField($model,'username',array('size'=>20,'maxlength'=>20)); ?>
-		<?php echo $form->error($model,'username'); ?>
-	</div>
+<?php echo $form->passwordFieldRow($model,'username', array('class'=>'input-medium')); ?>
+<?php echo $form->passwordFieldRow($model,'email', array('class'=>'input-medium')); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'email'); ?>
-		<?php echo $form->textField($model,'email',array('size'=>60,'maxlength'=>128)); ?>
-		<?php echo $form->error($model,'email'); ?>
-	</div>
-
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? UserModule::t('Create') : UserModule::t('Save')); ?>
-	</div>
+<div class="form-actions">
+    <?php $this->widget('bootstrap.widgets.TbButton',array(
+        'buttonType'=>'submit',
+        'type'=>'primary',
+        'label'=>'Save',
+    )); ?>
+</div>
 
 <?php $this->endWidget(); ?>
-
-</div><!-- form -->
