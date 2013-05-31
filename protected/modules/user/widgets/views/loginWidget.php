@@ -1,5 +1,4 @@
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
-
     'id'=>'login-form',
     'type'=>'horizontal',
     'enableClientValidation'=>true,
@@ -10,7 +9,6 @@
         'class'=>'well',
     ),
     'action'=>array('/user/login'),
-
 )); ?>
 
 <?php echo $form->errorSummary($model); ?>
