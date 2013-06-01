@@ -81,10 +81,10 @@ return array(
 		),
 		*/
         'db'=>array(
-            'connectionString' => 'mysql:host=localhost;dbname=findtheone',
+            'connectionString' => 'mysql:host=plato.incrediblelogic.com.au;dbname=fto_findtheone',
             'emulatePrepare' => true,
-            'username' => 'root',
-            'password' => 'root',
+            'username' => 'fto_findtheone',
+            'password' => 'val123!!',
             'charset' => 'utf8',
             'tablePrefix' => 'tbl_',
         ),
