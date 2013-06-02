@@ -67,7 +67,7 @@ class MatchController extends Controller
 			),
 		));
 
-        $similiarPeople = [];
+        $similiarPeople = array();
         foreach($dataProvider->getData() as $data) {
             // calculate score
             $score = $this->calculateScore($data);
