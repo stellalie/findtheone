@@ -4,45 +4,33 @@ $this->breadcrumbs=array(
 );
 if(UserModule::isAdmin()) {
     $this->layout='//layouts/column1';
-    // leave menu empty for now
-    $this->menu=array();
 }
 ?>
 
 <h1>Find your Match</h1>
 
-<?php $this->widget('zii.widgets.grid.CGridView', array(
-    'dataProvider'=>$dataProvider,
-    'columns'=>array(
-        array(
-            'name' => 'Name',
-            'type'=>'raw',
-            'value' => 'CHtml::link(CHtml::encode($data->profile->first_name." ".$data->profile->last_name),array("match/view","id"=>$data->id))',
-        ),
-        array(
-            'name' => 'City',
-            'type'=>'raw',
-            'value' => '$data->profile->city',
-        ),
-        array(
-            'name' => 'State',
-            'type'=>'raw',
-            'value' => '$data->profile->state',
-        ),
-        array(
-            'name' => 'Postcode',
-            'type'=>'raw',
-            'value' => '$data->profile->state',
-        ),
-        array(
-            'name' => 'Age',
-            'type'=>'raw',
-            'value' => '$data->profile->dob',
-        ),
-        array(
-            'name' => '% Match',
-            'type'=>'raw',
-            'value' => '',
-        ),
-    ),
-)); ?>
+    <div class="grid-view">
+        <table class="items table table-striped table-bordered table-condensed">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>State</th>
+                    <th>Age</th>
+                    <th>Similiarity Score</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach($similiarPeople as $id => $score) { ?>
+                    <tr>
+                        <td><?php echo CHtml::link(CHtml::encode(UserModule::user($id)->profile->first_name." ".UserModule::user($id)->profile->last_name),array("match/view","id"=>$id)) ?></td>
+                        <td><?php echo UserModule::user($id)->profile->state; ?></td>
+                        <td><?php echo $this->calculateAge(UserModule::user($id)->profile->dob); ?></td>
+                        <td><?php echo $score; ?></td>
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+    </div>
+
+
+
